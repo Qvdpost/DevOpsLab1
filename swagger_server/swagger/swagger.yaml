@@ -9,6 +9,8 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
+- url: https://virtserver.swaggerhub.com/Qvdpost/tutorial/1.0.0
+  description: SwaggerHub API Auto Mocking
 - url: https://virtserver.SwaggerHub.com/tutorial/1.0.0
   description: SwaggerHub API Auto Mocking
 paths:
@@ -90,7 +92,7 @@ paths:
         "400":
           description: "invalid input, object invalid"
         "409":
-          description: an existing already exists
+          description: an existing student already exists
       x-openapi-router-controller: swagger_server.controllers.default_controller
 components:
   schemas:
@@ -104,20 +106,24 @@ components:
           type: integer
         first_name:
           type: string
+          example: Harry
         last_name:
           type: string
+          example: Potter
         gradeRecords:
           type: array
+          example:
+          - subject_name: Harry
+          - grade_number: 10
           items:
-            oneOf:
-            - $ref: '#/components/schemas/GradeRecord'
+            $ref: '#/components/schemas/GradeRecord'
       example:
         student_id: 0
-        last_name: last_name
-        first_name: first_name
+        last_name: Potter
+        first_name: Harry
         gradeRecords:
-        - ""
-        - ""
+        - subject_name: Harry
+        - grade_number: 10
     GradeRecord:
       required:
       - grade
@@ -126,8 +132,10 @@ components:
       properties:
         subject_name:
           type: string
+          example: Harry
         grade number:
           maximum: 10
           minimum: 0
           type: number
+          example: 7
 
