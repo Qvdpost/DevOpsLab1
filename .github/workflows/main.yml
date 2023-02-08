@@ -1,8 +1,8 @@
 name: Builb Test and push
 on: [push]
 env:
-  IMAGE_NAME: student_service
-  REPO_NAME: devops_tutorial
+  IMAGE_NAME: devops_tutorial
+  REPO_NAME: quinner
 
 
 jobs:
