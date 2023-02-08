@@ -14,25 +14,25 @@ class GradeRecord(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, subject_name: str=None, grade_number: float=None):  # noqa: E501
+    def __init__(self, subject_name: str=None, grade: float=None):  # noqa: E501
         """GradeRecord - a model defined in Swagger
 
         :param subject_name: The subject_name of this GradeRecord.  # noqa: E501
         :type subject_name: str
-        :param grade_number: The grade_number of this GradeRecord.  # noqa: E501
-        :type grade_number: float
+        :param grade: The grade of this GradeRecord.  # noqa: E501
+        :type grade: float
         """
         self.swagger_types = {
             'subject_name': str,
-            'grade_number': float
+            'grade': float
         }
 
         self.attribute_map = {
             'subject_name': 'subject_name',
-            'grade_number': 'grade number'
+            'grade': 'grade'
         }
         self._subject_name = subject_name
-        self._grade_number = grade_number
+        self._grade = grade
 
     @classmethod
     def from_dict(cls, dikt) -> 'GradeRecord':
@@ -69,22 +69,24 @@ class GradeRecord(Model):
         self._subject_name = subject_name
 
     @property
-    def grade_number(self) -> float:
-        """Gets the grade_number of this GradeRecord.
+    def grade(self) -> float:
+        """Gets the grade of this GradeRecord.
 
 
-        :return: The grade_number of this GradeRecord.
+        :return: The grade of this GradeRecord.
         :rtype: float
         """
-        return self._grade_number
+        return self._grade
 
-    @grade_number.setter
-    def grade_number(self, grade_number: float):
-        """Sets the grade_number of this GradeRecord.
+    @grade.setter
+    def grade(self, grade: float):
+        """Sets the grade of this GradeRecord.
 
 
-        :param grade_number: The grade_number of this GradeRecord.
-        :type grade_number: float
+        :param grade: The grade of this GradeRecord.
+        :type grade: float
         """
+        if grade is None:
+            raise ValueError("Invalid value for `grade`, must not be `None`")  # noqa: E501
 
-        self._grade_number = grade_number
+        self._grade = grade
