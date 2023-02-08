@@ -111,8 +111,10 @@ components:
         gradeRecords:
           type: array
           example:
-          - subject_name: Harry
-          - grade_number: 10
+          - subject_name: Wizarding
+            grade: 10
+          - subject_name: Broom Flying
+            grade: 8.5
           items:
             $ref: '#/components/schemas/GradeRecord'
       example:
@@ -120,8 +122,10 @@ components:
         last_name: Potter
         first_name: Harry
         gradeRecords:
-        - subject_name: Harry
-        - grade_number: 10
+        - subject_name: Wizarding
+          grade: 10
+        - subject_name: Broom Flying
+          grade: 8.5
     GradeRecord:
       required:
       - grade
@@ -130,10 +134,9 @@ components:
       properties:
         subject_name:
           type: string
-          example: Harry
-        grade number:
+          example: Wizarding
+        grade:
           maximum: 10
           minimum: 0
           type: number
-          example: 7
-
+          example: 7.5

@@ -1,7 +1,7 @@
 import connexion
 import six
 
-from swagger_server.service.student_service import add
+from swagger_server.service.student_service import add, delete, get_by_id
 from swagger_server.models.student import Student  # noqa: E501
 from swagger_server import util
 
@@ -32,7 +32,7 @@ def delete_student(student_id):  # noqa: E501
 
     :rtype: Student
     """
-    return 'do some magic!'
+    return delete(student_id)
 
 
 def get_student_by_id(student_id):  # noqa: E501
@@ -45,4 +45,4 @@ def get_student_by_id(student_id):  # noqa: E501
 
     :rtype: Student
     """
-    return 'do some magic!'
+    return get_by_id(student_id)
