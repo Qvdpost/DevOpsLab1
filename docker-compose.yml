@@ -1,0 +1,60 @@
+version: '3'
+services:
+  student_service:
+#    image: quinner/devops_tutorial:latest
+    build: .
+    container_name: student_service
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      MONGODB_DATABASE: flaskdb
+      MONGODB_USERNAME: devops
+      MONGODB_PASSWORD: devops_password
+      MONGODB_HOSTNAME: mongodb
+      MONGODB_PORT: 27017
+    ports:
+      - "8080:8080"
+    networks:
+      - internal
+      - web
+
+  mongo:
+    image: mongo:4
+    container_name: mongodb
+    expose:
+      - "27017"
+    networks:
+      - internal
+    restart: unless-stopped
+    command: mongod --auth
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: devops
+      MONGO_INITDB_ROOT_PASSWORD: devops_password
+      MONGO_INITDB_DATABASE: flaskdb
+      MONGODB_DATA_DIR: /data/db
+      MONDODB_LOG_DIR: /dev/null
+    volumes:
+      - mongodbdata:/data/db
+
+  mongo-express:
+    image: mongo-express
+    restart: unless-stopped
+    ports:
+      - '8081:8081'
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: devops
+      ME_CONFIG_MONGODB_ADMINPASSWORD: devops_password
+      ME_CONFIG_MONGODB_URL: mongodb://devops:devops_password@mongodb:27017/
+    networks:
+      - internal
+      - web
+
+volumes:
+  mongodbdata:
+    driver: local
+networks:
+  web:
+    external: true
+  internal:
+    external: false
