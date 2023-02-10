@@ -5,6 +5,7 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
+from swagger_server.models.grade_record import GradeRecord  # noqa: E501
 from swagger_server.models.student import Student  # noqa: E501
 from swagger_server.test import BaseTestCase
 
@@ -45,6 +46,20 @@ class TestDefaultController(BaseTestCase):
         response = self.client.open(
             '/Qvdpost/tutorial/1.0.0/student/{student_id}'.format(student_id=1.2),
             method='GET')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+    def test_update_grades(self):
+        """Test case for update_grades
+
+        updates grade by addition
+        """
+        body = GradeRecord()
+        response = self.client.open(
+            '/Qvdpost/tutorial/1.0.0/student/{student_id}'.format(student_id=1.2),
+            method='PATCH',
+            data=json.dumps(body),
+            content_type='applicaton/json')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

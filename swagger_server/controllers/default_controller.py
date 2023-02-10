@@ -1,8 +1,8 @@
 import connexion
 import six
 
-from swagger_server.service.student_service import add, delete, get_by_id
-from swagger_server.models.student import Student  # noqa: E501
+from swagger_server.service.student_service import add, delete, get_by_id, update
+from swagger_server.models.student import Student, GradeRecord  # noqa: E501
 from swagger_server import util
 
 
@@ -46,3 +46,21 @@ def get_student_by_id(student_id):  # noqa: E501
     :rtype: Student
     """
     return get_by_id(student_id)
+
+
+def update_grades(student_id, body=None):  # noqa: E501
+    """updates grade by addition
+
+    add a grade to a student\\&#x27;s grades  # noqa: E501
+
+    :param student_id: the uid
+    :type student_id: float
+    :param body:
+    :type body: dict | bytes
+
+    :rtype: Student
+    """
+    if connexion.request.is_json:
+        body = GradeRecord.from_dict(connexion.request.get_json())  # noqa: E501
+        return update(body)
+    return 'error', 500

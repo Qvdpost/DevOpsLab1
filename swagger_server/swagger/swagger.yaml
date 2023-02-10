@@ -67,6 +67,38 @@ paths:
         "404":
           description: not found
       x-openapi-router-controller: swagger_server.controllers.default_controller
+    patch:
+      summary: updates grade by addition
+      description: |
+        add a grade to a student\'s grades
+      operationId: update_grades
+      parameters:
+      - name: student_id
+        in: path
+        description: the uid
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: number
+          format: integer
+      requestBody:
+        content:
+          applicaton/json:
+            schema:
+              $ref: '#/components/schemas/GradeRecord'
+      responses:
+        "200":
+          description: updated
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+        "400":
+          description: "invalid input, object invalid"
+        "404":
+          description: not found
+      x-openapi-router-controller: swagger_server.controllers.default_controller
   /student:
     post:
       summary: Add a new student
@@ -103,7 +135,6 @@ components:
       properties:
         student_id:
           type: integer
-          example: 10272380
         first_name:
           type: string
           example: Harry
@@ -113,9 +144,9 @@ components:
         gradeRecords:
           type: array
           example:
-          - subject_name: Wizarding
+          - subject_name: Harry
             grade: 10
-          - subject_name: Broom Flying
+          - subject_name: Draco
             grade: 8.5
           items:
             $ref: '#/components/schemas/GradeRecord'
@@ -124,9 +155,9 @@ components:
         last_name: Potter
         first_name: Harry
         gradeRecords:
-        - subject_name: Wizarding
+        - subject_name: Harry
           grade: 10
-        - subject_name: Broom Flying
+        - subject_name: Draco
           grade: 8.5
     GradeRecord:
       required:
@@ -136,9 +167,10 @@ components:
       properties:
         subject_name:
           type: string
-          example: Wizarding
+          example: Harry
         grade:
           maximum: 10
           minimum: 0
           type: number
           example: 7.5
+
