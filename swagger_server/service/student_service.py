@@ -42,6 +42,18 @@ def get_by_id(student_id=None, subject=None):
     return student
 
 
+def update(student_id=None, subject_name=None, grade=None):
+    if student_id is None or subject_name is None or grade is None:
+        return 'error', 500
+
+    if not (student := students.retrieve(student_id)):
+        return 'not found', 404
+
+    students.update("push", student_id, {"grades": {"subject_name": subject_name, "grade": grade}})
+
+    return student
+
+
 def delete(student_id=None):
     if student_id is None:
         return 'error', 500
