@@ -84,14 +84,14 @@ paths:
           format: integer
       requestBody:
         content:
-          applicaton/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/GradeRecord'
       responses:
         "200":
           description: updated
           content:
-            applicaton/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Student'
         "400":
@@ -144,9 +144,9 @@ components:
         gradeRecords:
           type: array
           example:
-          - subject_name: Harry
+          - subject_name: Wizarding
             grade: 10
-          - subject_name: Draco
+          - subject_name: Broom Flying
             grade: 8.5
           items:
             $ref: '#/components/schemas/GradeRecord'
@@ -155,9 +155,9 @@ components:
         last_name: Potter
         first_name: Harry
         gradeRecords:
-        - subject_name: Harry
+        - subject_name: Wizarding
           grade: 10
-        - subject_name: Draco
+        - subject_name: Broom Flying
           grade: 8.5
     GradeRecord:
       required:
@@ -167,7 +167,7 @@ components:
       properties:
         subject_name:
           type: string
-          example: Harry
+          example: Wand Handling
         grade:
           maximum: 10
           minimum: 0

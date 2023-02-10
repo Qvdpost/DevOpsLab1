@@ -61,6 +61,7 @@ def update_grades(student_id, body=None):  # noqa: E501
     :rtype: Student
     """
     if connexion.request.is_json:
+
         body = GradeRecord.from_dict(connexion.request.get_json())  # noqa: E501
-        return update(body)
+        return update(student_id, body)
     return 'error', 500
