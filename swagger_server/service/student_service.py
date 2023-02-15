@@ -8,7 +8,7 @@ def add(student=None):
         return 'error', 500
 
     if not student.student_id:
-        student.student_id = random.randint()
+        student.student_id = int(1000*random.random())
 
     if students.retrieve(student.student_id):
         return 'Student already exists', 409
@@ -23,7 +23,7 @@ def add(student=None):
     if doc_id != student.student_id:
         return 'error', 500
 
-    return students.retrieve(student.student_id)
+    return doc_id
 
 
 def get_by_id(student_id=None, subject=None):

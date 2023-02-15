@@ -105,13 +105,11 @@ paths:
       description: Adds an item to the system
       operationId: add_student
       requestBody:
-        description: Student item to add
         content:
           application/json:
             schema:
-              type: number
-              format: integer
-              x-content-type: application/json
+              $ref: '#/components/schemas/Student'
+        description: Student item to add
       responses:
         "200":
           description: created
@@ -152,7 +150,6 @@ components:
           items:
             $ref: '#/components/schemas/GradeRecord'
       example:
-        student_id: 0
         last_name: Potter
         first_name: Harry
         gradeRecords:
