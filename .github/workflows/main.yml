@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build docker
+    - name: Create network
+      run : docker network create web
+    - name: Compose up
       run: docker compose up -d
 #      run: |
 #        docker build . -t $REPO_NAME/$IMAGE_NAME
