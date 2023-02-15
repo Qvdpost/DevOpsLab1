@@ -1,18 +1,14 @@
-import os
-import tempfile
-from functools import reduce
-
-# from tinydb import TinyDB, Query
 from swagger_server.db import students, grades
 
-# db_dir_path = tempfile.gettempdir()
-# db_file_path = os.path.join(db_dir_path, "students.json")
-# student_db = TinyDB(db_file_path)
+import random
 
 
 def add(student=None):
     if not student:
         return 'error', 500
+
+    if not student.student_id:
+        student.student_id = random.randint()
 
     if students.retrieve(student.student_id):
         return 'Student already exists', 409
