@@ -109,7 +109,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Student'
+              type: number
+              format: integer
+              x-content-type: application/json
       responses:
         "200":
           description: created
