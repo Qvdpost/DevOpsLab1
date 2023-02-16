@@ -1,8 +1,7 @@
 version: '3'
 services:
   student_service:
-    #image: quinner/devops_tutorial:latest
-    build: .
+    image: quinner/devops_tutorial
     container_name: student_service
     restart: unless-stopped
     depends_on:
