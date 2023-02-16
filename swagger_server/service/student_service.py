@@ -7,7 +7,7 @@ def add(student=None):
     if not student:
         return 'error', 500
 
-    if not student.student_id:
+    if student.student_id is None:
         student.student_id = int(1000 * random.random())
 
     if students.retrieve(student.student_id):
@@ -29,7 +29,7 @@ def add(student=None):
     return doc_id, 200
 
 
-def get_by_id(student_id=None, subject=None):
+def get_by_id(student_id=None):
     if student_id is None:
         return 'error', 500
 
