@@ -26,7 +26,7 @@ def add(student=None):
     if doc_id != student.student_id:
         return 'error', 500
 
-    return doc_id
+    return doc_id, 200
 
 
 def get_by_id(student_id=None, subject=None):
@@ -38,7 +38,7 @@ def get_by_id(student_id=None, subject=None):
     if not student:
         return 'Student not found', 404
 
-    return student
+    return student, 200
 
 
 def update(student_id=None, gradeRecord=None):
@@ -51,7 +51,7 @@ def update(student_id=None, gradeRecord=None):
     students.update("push", student_id,
                     {"grades": {"subject_name": gradeRecord.subject_name, "grade": gradeRecord.grade}})
 
-    return students.retrieve(student_id)
+    return students.retrieve(student_id), 200
 
 
 def delete(student_id=None):
@@ -62,4 +62,5 @@ def delete(student_id=None):
         return 'not found', 404
 
     students.delete(student_id)
-    return student
+
+    return student, 200
