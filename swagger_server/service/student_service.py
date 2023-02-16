@@ -8,7 +8,9 @@ def add(student=None):
         return 'error', 500
 
     if student.student_id is None:
-        student.student_id = int(1000 * random.random())
+        while students.retrieve((student_id := int(1000 * random.random()))):
+            pass
+        student.student_id = student_id
 
     if students.retrieve(student.student_id):
         return 'Student already exists', 409
