@@ -19,7 +19,7 @@ def add(student=None):
         'first_name': student.first_name,
         'last_name': student.last_name,
         '_id': student.student_id,
-        'grades': [{'subject_name': grade.subject_name, 'grade': grade.grade} for grade in student.grade_records]
+        'grade_records': [{'subject_name': grade.subject_name, 'grade': grade.grade} for grade in student.grade_records]
         if student.grade_records else []
     }
 
@@ -51,7 +51,7 @@ def update(student_id=None, gradeRecord=None):
         return 'not found', 404
 
     students.update("push", student_id,
-                    {"grades": {"subject_name": gradeRecord.subject_name, "grade": gradeRecord.grade}})
+                    {"grade_records": {"subject_name": gradeRecord.subject_name, "grade": gradeRecord.grade}})
 
     return students.retrieve(student_id), 200
 
