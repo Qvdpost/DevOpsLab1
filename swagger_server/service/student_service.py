@@ -8,17 +8,20 @@ def add(student=None):
         return 'error', 500
 
     if not student.student_id:
-        student.student_id = int(1000*random.random())
+        student.student_id = int(1000 * random.random())
 
     if students.retrieve(student.student_id):
         return 'Student already exists', 409
 
-    doc_id = students.create({
+    data = {
         'first_name': student.first_name,
         'last_name': student.last_name,
         '_id': student.student_id,
         'grades': [{'subject_name': grade.subject_name, 'grade': grade.grade} for grade in student.grade_records]
-    })
+        if student.grade_records else []
+    }
+
+    doc_id = students.create(data)
 
     if doc_id != student.student_id:
         return 'error', 500
